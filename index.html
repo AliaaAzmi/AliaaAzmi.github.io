@@ -188,7 +188,8 @@
 
     /* ── RESOURCES ── */
     .resource-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; max-width: 640px; }
-    .resource-list li { display: flex; align-items: flex-start; gap: .75rem; font-size: .92rem; color: var(--ink-mid); }
+    .resource-list li { display: flex; align-items: flex-start; flex-wrap: wrap; gap: .75rem; font-size: .92rem; color: var(--ink-mid); }
+    .resource-list li strong { white-space: nowrap; flex-shrink: 0; }
     .resource-list li::before { content: '↗'; font-size: .9rem; color: var(--primary); flex-shrink: 0; margin-top: .05rem; }
     .ai-box {
       margin-top: 2rem; max-width: 640px;
@@ -197,6 +198,50 @@
     }
     .ai-box p { font-size: .88rem; color: var(--ink-mid); line-height: 1.7; }
     .ai-box strong { color: var(--primary-dark); }
+
+    /* ── CENTERED LAYOUT: Reflection, Skills, Resources ── */
+    #reflection .section-header,
+    #skills .section-header,
+    #resources .section-header {
+      align-items: center;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #reflection .divider,
+    #skills .divider,
+    #resources .divider {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #reflection .journey-text {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      border-left: none;
+      padding: 1.6rem 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    #skills .skills-grid {
+      justify-content: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    #resources .resource-list {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    #resources .ai-box {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -376,8 +421,9 @@
     </article>
 
     <article class="card">
-      <div class="card-video-placeholder">
-        <span>Video coming soon</span>
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/Q2PeR9WbpOA" title="SwiftBite Project 2 – Video Software Review"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="card-body">
         <span class="card-label">Project 2 &middot; Lab 5 + API + Sensors + Cloud</span>
