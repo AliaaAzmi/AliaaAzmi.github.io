@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>e-Portfolio | Nik Nurul Aliaa | A220886</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --primary:       #8E4958;
+      --primary-light: #FFD9DE;
+      --primary-dark:  #713341;
+      --secondary:     #75565B;
+      --cream:         #FFF8F7;
+      --surface-low:   #FFF0F1;
+      --surface-mid:   #F5E4E6;
+      --ink:           #22191B;
+      --ink-mid:       #524345;
+      --ink-soft:      #847375;
+      --border:        #D6C2C4;
+      --card-bg:       #FFFFFF;
+      --shadow:        0 2px 16px rgba(142,73,88,.10);
+      --radius:        14px;
+      --font-display: 'DM Serif Display', serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); background: var(--cream); color: var(--ink); line-height: 1.7; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,248,247,.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1rem, 5vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; height: 60px;
+    }
+    .nav-brand {
+      font-family: var(--font-mono); font-size: .8rem; font-weight: 500;
+      color: var(--primary); letter-spacing: .04em; white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: clamp(.4rem, 2vw, 1.4rem); list-style: none; flex-wrap: wrap; }
+    .nav-links a {
+      font-size: .82rem; font-weight: 500; color: var(--ink-mid);
+      text-decoration: none; letter-spacing: .03em;
+      padding: .25rem .1rem; border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .nav-links a:hover { color: var(--primary-dark); border-color: var(--primary); }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 90vh; display: grid; place-items: center;
+      padding: 5rem clamp(1.5rem, 8vw, 6rem);
+      position: relative; overflow: hidden;
+      background: linear-gradient(145deg, #FFD9DE 0%, #FFF0F1 45%, #FFF8F7 100%);
+    }
+    #home::before {
+      content: ''; position: absolute;
+      width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(142,73,88,.16) 0%, transparent 70%);
+      top: -100px; right: -100px; pointer-events: none;
+    }
+    #home::after {
+      content: ''; position: absolute;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(117,86,91,.11) 0%, transparent 70%);
+      bottom: -60px; left: -60px; pointer-events: none;
+    }
+    .hero-inner { max-width: 580px; width: 100%; text-align: center; position: relative; z-index: 1; }
+    .hero-avatar {
+      width: 112px; height: 112px; border-radius: 50%;
+      background: #fff; border: 4px solid var(--primary-light);
+      box-shadow: 0 8px 32px rgba(142,73,88,.18), 0 2px 8px rgba(142,73,88,.10);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem; margin: 0 auto 1.6rem; line-height: 1;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-mono); font-size: .72rem; font-weight: 500;
+      letter-spacing: .14em; color: var(--primary); text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; height: 1px; width: 28px; background: var(--primary); opacity: .5;
+    }
+    .hero-name {
+      font-family: var(--font-display); font-size: clamp(2rem, 5.5vw, 3.4rem);
+      line-height: 1.12; color: var(--ink); margin-bottom: .5rem;
+    }
+    .hero-name em { font-style: italic; color: var(--primary); }
+    .hero-sub { font-size: .9rem; color: var(--ink-soft); margin-bottom: .3rem; font-weight: 400; }
+    .hero-intro {
+      font-size: .95rem; color: var(--ink-mid); max-width: 500px;
+      margin: 1.2rem auto 0; line-height: 1.8;
+    }
+    .sdg-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: var(--primary); border-radius: 999px;
+      padding: .6rem 1.4rem; font-size: .84rem; font-weight: 600;
+      color: #fff; margin-top: 1.6rem; letter-spacing: .01em;
+      box-shadow: 0 4px 16px rgba(142,73,88,.28);
+    }
+    .sdg-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #FFD9DE; flex-shrink: 0; }
+    .sdg-reason {
+      font-size: .82rem; color: var(--ink-soft); margin-top: .9rem;
+      font-style: italic; max-width: 440px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 5rem clamp(1.5rem, 8vw, 6rem); }
+    .section-header { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 2.8rem; }
+    .section-tag {
+      font-family: var(--font-mono); font-size: .7rem; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--primary); margin-bottom: .5rem;
+    }
+    .section-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--ink); line-height: 1.2; }
+    .divider { width: 48px; height: 3px; background: var(--primary); border-radius: 2px; margin-top: .8rem; }
+
+    /* ── CARDS ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 1.8rem; }
+    .card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(142,73,88,.16); }
+    .card-video { position: relative; padding-top: 56.25%; background: var(--ink); }
+    .card-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .card-video-placeholder {
+      position: relative; padding-top: 56.25%; background: var(--surface-mid);
+      display: block;
+    }
+    .card-video-placeholder span {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: .8rem; color: var(--ink-soft);
+    }
+    .card-body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    .card-label { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--primary); margin-bottom: .3rem; font-weight: 500; }
+    .card-title { font-family: var(--font-display); font-size: 1.22rem; color: var(--ink); margin-bottom: .6rem; line-height: 1.3; }
+    .card-desc { font-size: .88rem; color: var(--ink-soft); margin-bottom: 1rem; line-height: 1.6; }
+    .reflection-box {
+      background: var(--primary-light); border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0; padding: .8rem 1rem;
+      font-size: .84rem; color: var(--ink-mid); line-height: 1.65; margin-top: auto;
+    }
+    .reflection-box strong {
+      display: block; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--primary-dark); margin-bottom: .3rem; font-family: var(--font-mono);
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      margin-top: 1rem; padding: .55rem 1.2rem; border-radius: 8px;
+      font-size: .82rem; font-weight: 600; text-decoration: none;
+      transition: background .2s, transform .15s; align-self: flex-start;
+      cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    /* ── BG ALTERNATES ── */
+    #labs       { background: var(--cream); }
+    #projects   { background: var(--surface-low); }
+    #reflection { background: var(--cream); }
+    #skills     { background: var(--surface-low); }
+    #resources  { background: var(--cream); }
+
+    /* ── REFLECTION ── */
+    .journey-text {
+      max-width: 680px; font-size: 1rem; color: var(--ink-mid);
+      line-height: 1.85; border-left: 3px solid var(--primary); padding-left: 1.4rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: .7rem; }
+    .skill-pill {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 999px;
+      padding: .4rem 1rem; font-family: var(--font-mono); font-size: .78rem;
+      font-weight: 500; color: var(--primary-dark); transition: background .2s, border-color .2s;
+    }
+    .skill-pill:hover { background: var(--primary-light); border-color: var(--primary); }
+
+    /* ── RESOURCES ── */
+    .resource-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; max-width: 640px; }
+    .resource-list li { display: flex; align-items: flex-start; gap: .75rem; font-size: .92rem; color: var(--ink-mid); }
+    .resource-list li::before { content: '↗'; font-size: .9rem; color: var(--primary); flex-shrink: 0; margin-top: .05rem; }
+    .ai-box {
+      margin-top: 2rem; max-width: 640px;
+      background: var(--primary-light); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.2rem 1.4rem;
+    }
+    .ai-box p { font-size: .88rem; color: var(--ink-mid); line-height: 1.7; }
+    .ai-box strong { color: var(--primary-dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #22191B; color: rgba(255,255,255,.5);
+      text-align: center; padding: 3rem 1.5rem;
+      font-size: .82rem; line-height: 1.9;
+    }
+    .footer-name { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
+    .footer-divider { width: 40px; height: 2px; background: var(--primary); margin: .8rem auto; border-radius: 2px; opacity: .8; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { gap: .5rem; }
+      .nav-links a { font-size: .75rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <span class="nav-brand">NIK NURUL ALIAA / A220886</span>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#labs">Labs</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="home">
+  <div class="hero-inner">
+    <div class="hero-avatar" role="img" aria-label="Student avatar">&#x1F469;&#x200D;&#x1F4BB;</div>
+    <div class="hero-eyebrow">e-Portfolio &middot; Software Engineering</div>
+    <h1 class="hero-name">Nik Nurul <em>Aliaa</em></h1>
+    <p class="hero-sub">A220886 &nbsp;&middot;&nbsp; Instructor: Sir Nelson</p>
+    <p class="hero-intro">
+      This portfolio presents the development of a mobile application designed to support healthier lifestyle practices through nutrition and physical activity tracking.
+      It focuses on addressing challenges related to dietary monitoring and activity awareness by providing a simple and personalised solution.
+      The project integrates user-friendly features and sensor-based tracking to enhance overall health management.
+    </p>
+    <div class="sdg-badge">
+      <span class="dot" aria-hidden="true"></span>
+      SDG 3 &mdash; Good Health &amp; Well-Being
+    </div>
+    <p class="sdg-reason">
+      Because the application supports individuals in improving their dietary habits and physical activity, contributing to better overall health and prevention of lifestyle-related diseases.
+    </p>
+  </div>
+</header>
+
+<!-- LABS -->
+<section id="labs" class="section" aria-labelledby="labs-heading">
+  <div class="section-header">
+    <span class="section-tag">Course Labs</span>
+    <h2 class="section-title" id="labs-heading">Lab Submissions</h2>
+    <div class="divider" aria-hidden="true"></div>
+  </div>
+  <div class="card-grid">
+
+    <article class="card">
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/QMdyV2C52pU" title="Lab 1 – UI Design Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Lab 1</span>
+        <h3 class="card-title">User Interface Design</h3>
+        <p class="card-desc">Building structured UI layouts and reusable components with clean visual hierarchy.</p>
+        <div class="reflection-box">
+          <strong>Reflection</strong>
+          In this lab, I learned how to design basic user interfaces using structured layouts and components. It helped me understand the importance of clean, user-friendly design while improving my confidence in arranging UI elements effectively.
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/CEPyD5xrsZA" title="Lab 2 – Interaction Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Lab 2</span>
+        <h3 class="card-title">Interaction &amp; Event Handling</h3>
+        <p class="card-desc">Implementing user input responses, button click events, and dynamic state changes.</p>
+        <div class="reflection-box">
+          <strong>Reflection</strong>
+          This lab introduced event handling and how applications respond to user inputs such as button clicks. It helped me understand how interaction makes apps more dynamic and engaging.
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/qkwzo4eonQI" title="Lab 3 – Material Design Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Lab 3</span>
+        <h3 class="card-title">Material Design</h3>
+        <p class="card-desc">Applying Google Material Design principles for consistent, modern, and accessible interfaces.</p>
+        <div class="reflection-box">
+          <strong>Reflection</strong>
+          I explored Material Design principles to create consistent and modern interfaces. This improved my understanding of UI/UX design and how visual components enhance usability.
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/s42tOKiOIk0" title="Lab 4 – Navigation Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Lab 4</span>
+        <h3 class="card-title">Navigation</h3>
+        <p class="card-desc">Implementing multi-screen navigation flows and understanding app architecture structure.</p>
+        <div class="reflection-box">
+          <strong>Reflection</strong>
+          In this lab, I learned how to implement navigation between different screens. It improved my understanding of app structure and how to create a smooth user flow.
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/HZM6c01mXgE" title="Lab 5 – Room Database Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Lab 5</span>
+        <h3 class="card-title">Room Database</h3>
+        <p class="card-desc">Using Android Room for local data persistence, CRUD operations, and structured data management.</p>
+        <div class="reflection-box">
+          <strong>Reflection</strong>
+          This lab focused on using the Room database for storing and managing local data. It helped me understand data persistence and strengthened my backend development skills.
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section" aria-labelledby="projects-heading">
+  <div class="section-header">
+    <span class="section-tag">Coursework Projects</span>
+    <h2 class="section-title" id="projects-heading">Projects</h2>
+    <div class="divider" aria-hidden="true"></div>
+  </div>
+  <div class="card-grid">
+
+    <article class="card">
+      <div class="card-video">
+        <iframe src="https://www.youtube.com/embed/vOT0iEIYbZ0" title="SwiftBite Project 1 – Video Software Review"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Project 1 &middot; Lab 4 + Working Features</span>
+        <h3 class="card-title">SwiftBite</h3>
+        <p class="card-desc">Many individuals struggle to consistently track their daily nutritional intake due to the lack of a simple and personalised tool. Existing methods are often inconvenient and fail to meet individual needs.</p>
+        <div class="reflection-box">
+          <strong>Lessons Learned</strong>
+          Through this project, I learned how to integrate UI design and navigation into a functional mobile application. I also improved my debugging and problem-solving skills while ensuring a smooth user experience.
+        </div>
+        <a href="https://github.com/AliaaAzmi/A220886_NikNurulAliaa_SirNelson_Project1" target="_blank" rel="noopener" class="btn btn-primary" aria-label="View SwiftBite Project 1 on GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.57v-2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-video-placeholder">
+        <span>Video coming soon</span>
+      </div>
+      <div class="card-body">
+        <span class="card-label">Project 2 &middot; Lab 5 + API + Sensors + Cloud</span>
+        <h3 class="card-title">SwiftBite</h3>
+        <p class="card-desc">Many individuals lack awareness of their daily physical activity due to limited access to convenient tracking tools. This project integrates accelerometer-based step tracking to support a more comprehensive approach to personal health management.</p>
+        <div class="reflection-box">
+          <strong>Lessons Learned</strong>
+          This project helped me gain experience in integrating APIs, sensors, and cloud services. I also learned how to handle real-time data, which enhanced my technical and development skills.
+        </div>
+        <a href="https://github.com/AliaaAzmi/A220886_NikNurulAliaa_SirNelson_Project2" target="_blank" rel="noopener" class="btn btn-primary" aria-label="View SwiftBite Project 2 on GitHub">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.57v-2c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.31-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.13 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.87.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.82.57C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection" class="section" aria-labelledby="reflection-heading">
+  <div class="section-header">
+    <span class="section-tag">Personal Reflection</span>
+    <h2 class="section-title" id="reflection-heading">Learning Journey</h2>
+    <div class="divider" aria-hidden="true"></div>
+  </div>
+  <p class="journey-text">
+    Throughout this course, I gradually learned how to move from basic UI design to building more complete mobile applications.
+    Each lab helped me understand new concepts, although I still faced challenges in some areas like debugging and applying advanced features.
+    I am still improving my confidence in using new technologies, but I have gained valuable hands-on experience.
+    Overall, this journey has helped me build a foundation for further growth as a software engineering student.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section" aria-labelledby="skills-heading">
+  <div class="section-header">
+    <span class="section-tag">Tech Stack</span>
+    <h2 class="section-title" id="skills-heading">Skills &amp; Technologies</h2>
+    <div class="divider" aria-hidden="true"></div>
+  </div>
+  <div class="skills-grid" role="list" aria-label="Skills and technologies used">
+    <span class="skill-pill" role="listitem">Kotlin</span>
+    <span class="skill-pill" role="listitem">Jetpack Compose</span>
+    <span class="skill-pill" role="listitem">Room Database</span>
+    <span class="skill-pill" role="listitem">Retrofit</span>
+    <span class="skill-pill" role="listitem">Firebase Firestore</span>
+    <span class="skill-pill" role="listitem">Accelerometer</span>
+    <span class="skill-pill" role="listitem">Navigation Component</span>
+    <span class="skill-pill" role="listitem">REST APIs</span>
+    <span class="skill-pill" role="listitem">Material Design 3</span>
+    <span class="skill-pill" role="listitem">Git &amp; GitHub</span>
+    <span class="skill-pill" role="listitem">Android Studio</span>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources" class="section" aria-labelledby="resources-heading">
+  <div class="section-header">
+    <span class="section-tag">References &amp; Tools</span>
+    <h2 class="section-title" id="resources-heading">Resources</h2>
+    <div class="divider" aria-hidden="true"></div>
+  </div>
+  <ul class="resource-list">
+    <li><strong>Android Developer Documentation</strong> &mdash; official guides for Jetpack Compose, Room, Navigation, and Sensors API (Accelerometer)</li>
+    <li><strong>Firebase Documentation</strong> &mdash; Firestore database setup, authentication, and real-time sync</li>
+    <li><strong>Retrofit by Square</strong> &mdash; type-safe HTTP client for Android API integration</li>
+    <li><strong>Material Design 3 Guidelines</strong> &mdash; component specifications and theming tokens</li>
+    <li><strong>Git &amp; GitHub</strong> &mdash; version control and collaborative code hosting</li>
+    <li><strong>Android Emulator &amp; Physical Device Testing</strong> &mdash; debugging and performance profiling</li>
+  </ul>
+  <div class="ai-box">
+    <p>
+      <strong>🤖 AI Assistance Acknowledgement:</strong>
+      Assisted by Claude (Anthropic) for debugging, code review, and structural planning.
+      100% of the codebase was independently reviewed and maintained by the developer.
+      All AI-generated output was understood and adapted to ensure personal ownership of the work presented.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Nik Nurul Aliaa binti Nik Mohd Azmi</p>
+  <p>Matric No: A220886 &nbsp;&middot;&nbsp; Software Engineering</p>
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p>&copy; 2025 &mdash; e-Portfolio for Mobile Application Development</p>
+  <p>SDG 3: Good Health &amp; Well-Being</p>
+</footer>
+
+</body>
+</html>
